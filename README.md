@@ -31,8 +31,6 @@ In the CLI enter
 Then enter values for the prompt dialog when asked
 
 
-![alt text](url)
-
 ---
 
 ## Contributors

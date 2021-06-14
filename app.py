@@ -13,6 +13,7 @@ from pathlib import Path
 
 from qualifier.utils.fileio import load_csv, save_csv
 
+
 from qualifier.utils.calculators import (
     calculate_monthly_debt_ratio,
     calculate_loan_to_value_ratio,
@@ -100,16 +101,28 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
     print(f"Found {len(bank_data_filtered)} qualifying loans")
 
     return bank_data_filtered
+    
 
-
-def save_qualifying_loans(qualifying_loans):
+def save_qualifying_loans():
     """Saves the qualifying loans to a CSV file.
 
     Args:
         qualifying_loans (list of lists): The qualifying bank loans.
     """
-    # @TODO: Complete the usability dialog for savings the CSV Files.
-    # YOUR CODE HERE!
+
+    #csvpath = Path('qualifying_loans.csv')
+    #if not csvpath.exists():
+    #   sys.exit("Path cannot be found")
+    #save_csv(csvpath, qualifying_loans)
+
+    saveFile = questionary.confirm("Would you like to save as CSV file").ask()
+    saveFile = questionary.text("Enter a file path to save to (.csv):").ask()
+    saveFile = Path('/path/to/output.csv')
+    if not saveFile.exists():
+        sys.exit(f"Can't find this path: {saveFile}")
+
+    return save_csv(saveFile)
+
 
 
 def run():
